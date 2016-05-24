@@ -6,13 +6,12 @@
   :on-show
   (fn [screen entities]
     (update! screen :renderer (stage))
-    (add-timer! screen :auto-dispose 3)
     entities)
 
-  :on-timer
+  :on-key-down
   (fn [screen entities]
-    (case (:id screen)
-      :auto-dispose (app! :exit)))
+    (condp = (:key screen)
+      (key-code :escape) (app! :exit)))
   
   :on-render
   (fn [screen entities]
